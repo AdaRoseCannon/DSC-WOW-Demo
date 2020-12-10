@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>DSC Wow</title>
+	<script src="https://aframe.io/releases/1.1.0/aframe.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.loaders.min.js"></script>
+	<script src="./ar-components.js"></script>
+	
+	<style>
+		@import url('https://fonts.googleapis.com/css2?family=Ranchers&display=swap');
+
+		#overlay {
+			overflow: hidden;
+			position: absolute;
+			pointer-events: none;
+			box-sizing: border-box;
+			bottom: 0;
+			left: 0;
+			right:0;
+			top: 0;
+			z-index: 100;
+			padding: 1em;
+			font-family: sans-serif;
+		}
+
+		#overlay > * {
+			pointer-events: auto;
+		}
+
+		.fun {
+			font-family: 'Ranchers', cursive;
+			font-size: 4em;
+			text-align: center;
+			-webkit-text-stroke: 1px darkseagreen;
+			color: coral;
+			text-shadow:
+				3px 3px 0 darkseagreen,
+				-1px -1px 0 darkseagreen,  
+				1px -1px 0 darkseagreen,
+				-1px 1px 0 darkseagreen,
+				1px 1px 0 darkseagreen,
+				0 0 15px #020a;;
+		}
+
+		footer {
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			padding: 0.5em;
+			background: cornsilk;
+			width: 100%;
+		}
+
+	</style>
+</head>
+<body>
+    <a-scene webxr="optionalFeatures: hit-test, dom-overlay; overlayElement: #overlay;">
+		<a-camera position="0 0.3 0"></a-camera>
+		<a-gltf-model position="0 0 -1" id="cactus" shadow="receive:false;" rotation="0 90 0" src="./cactus.glb" animation-mixer></a-gltf-model>
+		<a-plane position="0 0 -1" width="1" hide-in-ar-mode shadow="cast:false;" height="1" color="darkcyan" rotation="-90 0 0"></a-plane>
+
+		<a-entity ar-hit-test="target:#cactus;" visible="false">
+			<a-plane src="./images/arrow.png" width="0.2" height="0.2" material="transparent: true" rotation="-90 0 0"></a-plane>
+		</a-entity>
+
+		<a-sky color="cornsilk" hide-in-ar-mode></a-sky>
+	</a-scene>
+	<div id="overlay">
+		<h1 class="fun">Cactus</h1>
+		<footer><a href="https://sketchfab.com/3d-models/baby-cactus-2a403b03dbf64f1fb34cf35a295ba8b6">Cactus model by pixipui on sketchfab</a></footer>
+	</div>
+</body>
+</html>
