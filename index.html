@@ -56,9 +56,14 @@
 	</style>
 </head>
 <body>
-    <a-scene webxr="optionalFeatures: hit-test, dom-overlay; overlayElement: #overlay;">
+	<a-scene webxr="optionalFeatures: hit-test, dom-overlay; overlayElement: #overlay;">
+		<a-assets>
+			<a-asset-item id="cactus-gltf" src="./cactus.glb"></a-asset-item>
+		</a-assets>
 		<a-camera position="0 0.3 0"></a-camera>
-		<a-gltf-model position="0 0 -1" id="cactus" shadow="receive:false;" rotation="0 90 0" src="./cactus.glb" animation-mixer></a-gltf-model>
+		<a-entity id="cactus">
+			<a-gltf-model position="0 0 -1" shadow="receive:false;" rotation="0 90 0" src="#cactus-gltf" animation-mixer></a-gltf-model>
+	    	</a-entity>
 		<a-plane position="0 0 -1" width="1" hide-in-ar-mode shadow="cast:false;" height="1" color="darkcyan" rotation="-90 0 0"></a-plane>
 
 		<a-entity ar-hit-test="target:#cactus;" visible="false">
